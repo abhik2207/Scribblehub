@@ -1,0 +1,45 @@
+{% extends 'basic.html' %}
+
+{% block title %} Search Results {% endblock title %}
+
+{% block blogactive %} active {% endblock blogactive %}
+
+{% block body %}
+<div class="jumbotron" style="background-color: #ffd6e7;">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-3 text-center" style="color:#5e0000;"><b>Search Results</b></h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% if allPosts|length < 1 %}
+    <h3>No search results :(</h3>
+    <p>Your search query - <b> {{ query }} </b> - did not match any documents.</p>
+    <p>Suggestion:
+    <ul>
+    <li><p><b>Make sure you spelled everything correctly</b></p></li>
+    <li><p><b>Try different keywords</b></p></li>
+    <li><p><b>Try fewer keywords</b></p></li>
+    <li><p><b>Try more general keywords</b></p></li>
+    </ul>
+    {% endif %}
+
+    {% for post in allPosts %}
+    <div class="col-md-12">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-lg h-md-250 position-relative">
+            <div class="col p-4 flex-column position-static">
+                <strong class="d-inline-block mb-2 text-danger">{{ post.author }}</strong>
+                <h3 class="mb-0"> {{ post.title }} </h3>
+                <div class="mb-1 text-muted"> {{ post.publishing_time }} </div>
+                <p class="card-text"> {{ post.content1 | slice:"0:500" }}... </p>
+                <a class="btn btn-danger btn-sm" href="/blog/{{ post.slug }}" role="button">Read more &raquo;</a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

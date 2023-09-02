@@ -1,0 +1,41 @@
+{% extends 'basic.html' %}
+
+{% block title %} ScribbleHub - Home {% endblock title %}
+
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block body %}
+<div class="jumbotron" style="background-color: #ffd6e7;">
+    <div class="container">
+        <h1 class="display-3 text-center" style="color:#5e0000;"><b>Welcome to ScribbleHub</b></h1><hr class="my-4">
+        <p class="lead" style="color:#5e0000;">Welcome to ScribbleHub, a community for writers and readers alike. Here, you will find a diverse array of stories, from heart-wrenching dramas to pulse-pounding adventures, all written by talented authors from around the world. Our mission is to provide a platform for creativity and self-expression, where writers can showcase their work and readers can discover new and exciting stories. Whether you're a seasoned writer or a curious reader, we invite you to join our community and immerse yourself in the world of storytelling. So come on in, explore, and let your imagination run wild on ScribbleHub.</p>
+        <a class="btn btn-outline-danger btn-lg" href="/blog" role="button">Go to Blogs &raquo;</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Here are some popular blogs for you!</h2>
+        <p class="lead">We're sure you're gonna love them</p>
+    </div>
+    <div class="row my-2">
+        {% for post in allPosts %}
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-lg h-md-250 position-relative">
+                    <div class="col p-4 flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-danger">{{ post.author }}</strong>
+                        <h3 class="mb-0"> {{ post.title }} </h3>
+                        <div class="mb-1 text-muted"> {{ post.publishing_time }} </div>
+                        <p class="card-text"> {{ post.content1 | slice:"0:300" }}... </p>
+                        <a class="btn btn-danger btn-sm" href="/blog/{{ post.slug }}" role="button">Read more &raquo;</a>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+                </div>
+                <div class="row my-2">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}

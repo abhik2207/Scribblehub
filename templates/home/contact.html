@@ -1,0 +1,35 @@
+{% extends 'basic.html' %}
+
+{% block title %} ScribbleHub - Contact us {% endblock title %}
+
+{% block contactactive %} active {% endblock contactactive %}
+
+{% block body %}
+<div class="jumbotron" style="background-color: #ffd6e7;">
+    <div class="container">
+        <h1 class="display-3 text-center" style="color:#5e0000;"><b>Contact Us</b></h1><hr>
+        <form action="/contact/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name" style="color:#5e0000;"><b>Name</b></label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name here">
+            </div>
+            <div class="form-group">
+                <label for="email" style="color:#5e0000;"><b>Email address</b></label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address here">
+                <small id="emailText" class="form-text text-muted">We'll never share your email handle with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="phone" style="color:#5e0000;"><b>Phone Number</b></label>
+                <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter your phone number here">
+                <small id="phoneText" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="content" style="color:#5e0000;"><b>Describe your issue</b></label>
+                <textarea class="form-control" id="content" name="content" cols="30" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-danger">Submit &raquo;</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}
